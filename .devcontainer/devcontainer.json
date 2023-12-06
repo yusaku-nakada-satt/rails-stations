@@ -1,0 +1,37 @@
+{
+	"name": "rails-stations",
+	"dockerComposeFile": "../docker-compose.yml",
+	"workspaceFolder": "/app",
+	"service": "web",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.formatOnSave": true
+			},
+			"extensions": [
+				"eamodio.gitlens",
+				"cschleiden.vscode-github-actions",
+				"github.vscode-pull-request-github",
+				"hashicorp.terraform",
+				"ms-azuretools.vscode-docker",
+				"ms-vsliveshare.vsliveshare",
+				"shd101wyy.markdown-preview-enhanced",
+				"irongeek.vscode-env",
+				"rogalmic.bash-debug",
+				"hediet.vscode-drawio",
+				"Pivotal.vscode-boot-dev-pack",
+				"ms-azuretools.vscode-docker",
+				"Shopify.ruby-lsp",
+				"castwide.solargraph",
+				"kaiwood.endwise",
+				"oderwat.indent-rainbow",
+				"mosapride.zenkaku",
+				"aaron-bond.better-comments",
+				"shardulm94.trailing-spaces",
+				"misogi.ruby-rubocop",
+				"TechTrain.railway-vscode"
+			]
+		}
+	},
+	"postCreateCommand": "bash .devcontainer/postCreateCommand.sh"
+}
