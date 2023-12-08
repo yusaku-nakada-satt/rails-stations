@@ -29,7 +29,8 @@
 				"aaron-bond.better-comments",
 				"shardulm94.trailing-spaces",
 				"misogi.ruby-rubocop",
-				"TechTrain.railway-vscode"
+				"TechTrain.railway-vscode",
+				"aliariff.vscode-erb-beautify"
 			]
 		}
 	},
