@@ -30,7 +30,8 @@
 				"shardulm94.trailing-spaces",
 				"misogi.ruby-rubocop",
 				"TechTrain.railway-vscode",
-				"aliariff.vscode-erb-beautify"
+				"aliariff.vscode-erb-beautify",
+				"rubocop.vscode-rubocop"
 			]
 		}
 	},

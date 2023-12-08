@@ -1,7 +1,7 @@
 {
   "ruby.rubocop.executePath": "/usr/local/bundle/bin/rubocop",
   "files.associations": {
-    "*.html.erb": "erb"
+    "*.html.erb": "html"
   },
   "[erb]": {
     "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
