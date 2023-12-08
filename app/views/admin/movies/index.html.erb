@@ -24,7 +24,11 @@
             <%= movie.image_url %>
           </td>
           <td>
-            <%= movie.is_showing %>
+            <% if movie.is_showing %>
+              上映中
+              <% else %>
+                上映予定
+                <% end %>
           </td>
           <td>
             <%= movie.created_at %>
