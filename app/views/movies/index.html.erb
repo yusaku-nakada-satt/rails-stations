@@ -1,0 +1,15 @@
+<h1>Movies</h1>
+<% @movies.each do |movie| %>
+  <div class="actions">
+    <tr>
+      <td><%= movie.id %></td>
+      <td><%= movie.name %></td>
+      <td><%= movie.year %></td>
+      <td><%= movie.description %></td>
+      <td><%= movie.image_url %></td>
+      <td><%= movie.is_showing %></td>
+      <td><%= movie.created_at %></td>
+      <td><%= movie.updated_at %></td>
+    </tr>
+  </div>
+<% end %>
