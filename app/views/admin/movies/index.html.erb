@@ -3,6 +3,19 @@
 <div class="top">
   <h1>Movies</h1>
 </div>
+<div>
+  <% if flash.any? %>
+    <div class="error-alert">
+      <ul>
+        <% flash.each do |name, message| %>
+          <li class="error-message text-danger">
+            <%= message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+</div>
 <% @movies.each do |movie| %>
   <div class="actions">
     <table>
@@ -35,6 +48,9 @@
           </td>
           <td>
             <%= movie.updated_at %>
+          </td>
+          <td>
+            <%= link_to '削除' , admin_movie_path(movie), method: :delete, data: { confirm: '削除してもよろしいですか?' } %>
           </td>
         </tr>
       </thead>
