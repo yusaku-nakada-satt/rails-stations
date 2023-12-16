@@ -9,7 +9,7 @@
       <thead>
         <tr>
           <td>
-            <%= movie.id %>
+            <%= link_to movie.id, edit_admin_movie_path(movie) %>
           </td>
           <td>
             <%= movie.name %>
