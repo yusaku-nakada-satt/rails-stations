@@ -5,14 +5,14 @@
   </div>
   <div class = "clients">
     <table>
-      <%= @rows.each do |row| %>
+      <% @rows.each do |row| %>
       <tr>
-          <%= @columns.each do |column| %>
+        <% @columns.each do |column| %>
           <td>
             <%= "#{row.row}-#{column.column}" %>
           </td>
           <% end %>
-      </tr>
+        </tr>
       <% end %>
     </table>
   </div>
