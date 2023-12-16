@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
-<div class="top">
-	<h1>映画一覧</h1>
+<div class="serch_form">
+	<%= form_with url: movies_path,method: :get, local: true do |f| %>
+		<%= f.text_field :keyword %>
+		<%= f.radio_button :is_showing, :"" %>
+			<%= f.label :is_showing, "全て" %>
+		<%= f.radio_button :is_showing, :"1" %>
+			<%= f.label :is_showing, "上映中" %>
+		<%= f.radio_button :is_showing, :"0" %>
+			<%= f.label :is_showing, "公開予定" %>
+		<%= f.submit '検索' %>
+	<% end %>
 </div>
 <% @movies.each do |movie| %>
 	<div class="actions">
