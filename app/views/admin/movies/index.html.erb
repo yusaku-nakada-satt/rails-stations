@@ -21,11 +21,24 @@
     <table>
       <thead>
         <tr>
+					<th>ID</th>
+					<th>映画タイトル</th>
+					<th>公開年</th>
+					<th>上映中か</th>
+					<th>概要</th>
+					<th>画像URL</th>
+					<th>作成日時</th>
+					<th>更新日時</th>
+          <th>上映スケジュール</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
           <td>
             <%= link_to movie.id, edit_admin_movie_path(movie) %>
           </td>
           <td>
-            <%= movie.name %>
+            <%= link_to movie.name, admin_movie_path(movie) %>
           </td>
           <td>
             <%= movie.year %>
@@ -34,7 +47,7 @@
             <%= movie.description %>
           </td>
           <td>
-            <%= movie.image_url %>
+            <%= image_tag movie.image_url %>
           </td>
           <td>
             <% if movie.is_showing %>
@@ -48,6 +61,13 @@
           </td>
           <td>
             <%= movie.updated_at %>
+          </td>
+          <td>
+            <% movie.schedules.each do |schedule| %>
+            <p>上映開始：<%= schedule.start_time %></p>
+            <p>上映終了：<%= schedule.start_time %></p>
+            <p>上映終了：<%= schedule.start_time %></p>
+          <% end %>
           </td>
           <td>
             <%= link_to '削除' , admin_movie_path(movie), method: :delete, data: { confirm: '削除してもよろしいですか?' } %>

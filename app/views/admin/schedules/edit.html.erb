@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<div>
+  <% if @schedule.errors.any? %>
+    <div class="error-alert">
+      <ul>
+        <% @schedule.errors.full_messages.each do |message| %>
+          <li class="error-message text-danger">
+            <%= message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+</div>
+
+
+<%= form_with model: [:admin, @schedule], url: admin_movie_schedule_path(@schedule.movie_id, @schedule) do |f| %>
+<div class="field mb-1">
+  <%= f.label :映画ID %><span class="badge badge-danger ml-1"></span>
+    <%= f.text_field :movie_id, class:"form-control",placeholder:"映画ID", disabled: true%>
+</div>
+  <div class="field mb-1">
+    <%= f.label :開始時間 %><span class="badge badge-danger ml-1"></span>
+      <%= f.text_field :start_time, class:"form-control",placeholder:"開始時間" %>
+  </div>
+  <div class="field mb-1">
+    <%= f.label :終了時間 %><span class="badge badge-danger ml-1"></span>
+      <%= f.text_field :end_time, class:"form-control",placeholder:"終了時間" %>
+  </div>
+  <div class="actions text-center">
+    <%= f.submit "Save Change" %>
+  </div>
+  <% end %>
+
+</html>

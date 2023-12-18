@@ -1,7 +1,12 @@
 module Admin
   class MoviesController < ApplicationController
     def index
-      @movies = Movie.all
+      @movies = Movie.left_joins(:schedules).select('schedules.*, movies.*')
+    end
+
+    def show
+      @movie = Movie.find(params[:id])
+      @schedules = Schedule.where(movie_id: params[:id])
     end
 
     def new
