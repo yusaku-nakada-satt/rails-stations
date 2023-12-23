@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @schedules = @movie.schedules
+    @dates = (Date.today..Date.today + 6).to_a
   end
 
   private

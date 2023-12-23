@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     resources :schedules, only: [:index, :show, :destroy]
   end
 
-  resources :movies, only: [:index, :show]
+  resources :movies, only: [:index, :show] do
+    resources :reservations, only: [:index]
+    resources :schedules do
+      resources :reservations, only: [:new, :create]
+    end
+  end
   resources :sheets, only: [:index]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

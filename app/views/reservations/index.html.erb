@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+	<title>座席一覧</title>
+  <%= stylesheet_link_tag 'sheets' %>
+</head>
+<html>
+  <div class="screen">
+    スクリーン　1
+  </div>
+  <div class = "clients">
+    <table>
+      <% @rows.each do |row| %>
+      <tr>
+        <% @columns.each do |column| %>
+          <td>
+            <%= "#{row.row}-#{column.column}" %>
+          </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</html>
