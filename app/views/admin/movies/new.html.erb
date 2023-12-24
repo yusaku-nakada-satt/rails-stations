@@ -16,10 +16,10 @@
 
 
 <%= form_with model: [:admin, @movie], local: true do |f| %>
-    <div class="field mb-1">
+
+    </div>    <div class="field mb-1">
         <%= f.label :映画タイトル %><span class="badge badge-danger ml-1"></span>
             <%= f.text_field :name, class:"form-control",placeholder:"映画タイトル" %>
-    </div>
     <div class="field mb-1">
         <%= f.label :公開年 %><span class="badge badge-danger ml-1"></span>
             <%= f.text_field :year, class:"form-control",placeholder:"公開年" %>

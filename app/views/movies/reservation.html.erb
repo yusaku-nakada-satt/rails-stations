@@ -13,7 +13,7 @@
       <tr>
         <% @columns.each do |column| %>
           <td>
-            <%= "#{row.row}-#{column.column}" %>
+            <%= link_to "#{row.row}-#{column.column}", new_movie_schedule_reservation_path(movie_id: params[:movie_id], schedule_id: params[:schedule_id], date: params[:date], sheet_id: "#{row.row}-#{column.column}") %>
           </td>
           <% end %>
         </tr>

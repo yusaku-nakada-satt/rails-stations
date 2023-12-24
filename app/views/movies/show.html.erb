@@ -79,19 +79,25 @@
   </div>
   <div class="reservation">
     <h2>座席予約</h2>
-    <%= form_with url: movie_reservations_path(@movie), method: :get do |f| %>
-    <div class="field mb-1">
-      <%= f.label :予約日付 %>
-      <%= f.select :date, @dates, {}, class: 'form-control' %>
-    </div>
-    <div class="field mb-1">
-      <%= f.label :上映スケジュール %>
-      <%= f.select :schedule_id, @schedules.map { |schedule| ["上映開始時間：#{schedule.start_time}", schedule.id] }, {}, class: 'form-control' %>
-    </div>
-    <div class="actions text-center">
-      <%= f.submit '座席を予約する', class: 'btn btn-primary' %>
-    <% end %>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>">
+        <%= message %>
+      </div>
+      <% end %>
+        <%= form_with url: movie_reservation_path(@movie), method: :get do |f| %>
+          <div class="field mb-1">
+            <%= f.label :予約日付 %>
+              <%= f.select :date, @dates, {}, class: 'form-control' %>
+          </div>
+          <div class="field mb-1">
+            <%= f.label :上映スケジュール %>
+              <%= f.select :schedule_id, @schedules.map { |schedule| ["上映開始時間：#{schedule.start_time}", schedule.id] },
+                {}, class: 'form-control' %>
+          </div>
+          <div class="actions text-center">
+            <%= button_tag '座席を予約する' , class: 'btn btn-primary' %>
+              <% end %>
+          </div>
   </div>
-</div>
 
 </html>

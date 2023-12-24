@@ -22,6 +22,20 @@ class MoviesController < ApplicationController
     @dates = (Date.today..Date.today + 6).to_a
   end
 
+  def reservation
+    unless params[:schedule_id]
+      redirect_to movie_path(params[:movie_id]), alert: 'スケジュールを選択してください'
+      return
+    end
+    unless params[:date]
+      redirect_to movie_path(params[:movie_id]), alert: '日付を選択してください'
+      return
+    end
+    @sheets = Sheet.all
+    @columns = Sheet.select(:column).distinct
+    @rows = Sheet.select(:row).distinct
+  end
+
   private
   def movie_search_params
     params.permit(:keyword, :is_showing)
