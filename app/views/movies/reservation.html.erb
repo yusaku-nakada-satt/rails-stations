@@ -4,17 +4,30 @@
   <%= stylesheet_link_tag 'sheets' %>
 </head>
 <html>
+  <div>
+    <% if flash.any? %>
+      <div class="error-alert">
+        <ul>
+          <% flash.each do |name, message| %>
+            <li class="error-message text-danger">
+              <%= message %>
+            </li>
+            <% end %>
+        </ul>
+      </div>
+      <% end %>
+  </div>
   <div class="screen">
     スクリーン　1
   </div>
   <div class = "clients">
     <table>
-      <% @rows.each do |row| %>
-      <tr>
-        <% @columns.each do |column| %>
-          <td>
-            <%= link_to "#{row.row}-#{column.column}", new_movie_schedule_reservation_path(movie_id: params[:movie_id], schedule_id: params[:schedule_id], date: params[:date], sheet_id: "#{row.row}-#{column.column}") %>
-          </td>
+      <% @sheets_group.each do |row, sheets| %>
+        <tr>
+          <% sheets.each do |sheet| %>
+            <td>
+              <%= link_to "#{sheet.row}-#{sheet.column}", new_movie_schedule_reservation_path(movie_id: params[:movie_id], schedule_id: params[:schedule_id], date: params[:date], sheet_id: sheet.id) %>
+            </td>
           <% end %>
         </tr>
       <% end %>

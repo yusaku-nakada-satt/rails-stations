@@ -19,9 +19,11 @@
         <% end %>
             <%= form_with model: @reservation, local: true do |f| %>
                 <div class="field mb-1">
+                    <% if !@movie.nil? %>
                     <%= f.label :選択中の映画 %><span class="badge badge-danger ml-1"></span>
-                    <p class="form-control-static"><%= @movie.name %></p>
-                    <p class="form-control-static"><%= @movie.id %></p>
+                        <%= f.text_field :movie_name, value: @movie.name, class:"form-control", readonly: true %>
+                            <%= f.hidden_field :movie_id, value: @movie.id %>
+                    <% end %>
                 </div>
                 <div class="field mb-1">
                     <%= f.label :選択中の日時 %><span class="badge badge-danger ml-1"></span>

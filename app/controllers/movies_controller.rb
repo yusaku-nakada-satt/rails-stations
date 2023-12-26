@@ -32,8 +32,7 @@ class MoviesController < ApplicationController
       return
     end
     @sheets = Sheet.all
-    @columns = Sheet.select(:column).distinct
-    @rows = Sheet.select(:row).distinct
+    @sheets_group = @sheets.group_by { |sheet| sheet[:row] }
   end
 
   private

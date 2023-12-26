@@ -3,6 +3,19 @@
 <head>
 	<title>映画一覧</title>
 </head>
+<div>
+	<% if flash.any? %>
+	  <div class="error-alert">
+		<ul>
+		  <% flash.each do |name, message| %>
+			<li class="error-message text-danger">
+			  <%= message %>
+			</li>
+			<% end %>
+		</ul>
+	  </div>
+	  <% end %>
+  </div>
 <div class="serch_form">
 	<%= form_with url: movies_path,method: :get, local: true do |f| %>
 		<%= f.text_field :keyword %>
