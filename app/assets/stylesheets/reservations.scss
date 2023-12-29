@@ -1,6 +1,40 @@
-// Place all the styles related to the reservations controller here.
+// Place all the styles related to the sheets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.reservation {
- background-color: #C0C0C0;
+
+.screen {
+  background-color: #C0C0C0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  width: 50%;
+  text-align: center;
+  margin: 100px auto;
+}
+.clients {
+  margin: auto auto;
+  width: 50%;
+  text-align: center;
+}
+
+table{
+  margin: 0 auto;
+  border-spacing: 50px;
+}
+
+td{
+  padding: 50px;
+  margin: 100px 10px;
+  text-size-adjust: 20px;
+  border: 1px solid #000000;
+
+}
+
+.no-reservation{
+  background-color: #c9ebaa;
+}
+
+.has-reservation{
+  background-color: #857f7f;
 }
