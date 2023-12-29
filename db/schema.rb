@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 2023_12_22_231339) do
     t.datetime "date", null: false
     t.bigint "schedule_id", null: false
     t.bigint "sheet_id", null: false
-    t.string "email", null: false
-    t.string "name", null: false
+    t.string "email", null: false, comment: "予約者メールアドレス"
+    t.string "name", null: false, comment: "予約者名"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["date", "schedule_id", "sheet_id"], name: "index_reservations_on_date_and_schedule_id_and_sheet_id", unique: true
+    t.index ["date", "schedule_id", "sheet_id"], name: "index_reservations_on_date_and_ids", unique: true
     t.index ["schedule_id"], name: "index_reservations_on_schedule_id"
     t.index ["sheet_id"], name: "index_reservations_on_sheet_id"
   end
