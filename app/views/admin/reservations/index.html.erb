@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<div class="top">
+  <h1>予約一覧</h1>
+</div>
+<div>
+  <% if flash.any? %>
+    <div class="error-alert">
+      <ul>
+        <% flash.each do |name, message| %>
+          <li class="error-message text-danger">
+            <%= message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+</div>
+<% @reservations.each do |reservation| %>
+  <div class="actions">
+    <table>
+      <thead>
+        <tr>
+					<th>ID</th>
+					<th>映画タイトル</th>
+					<th>sheet_id</th>
+					<th>日時</th>
+					<th>名前</th>
+					<th>メールアドレス</th>
+					<th>更新日時</th>
+					<th>作成日時</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <td>
+            <%= link_to reservation.id, admin_reservation_path(id: reservation.id) %>
+          </td>
+          <td>
+            <%= reservation.name %>
+          </td>
+          <td>
+            <%= reservation.sheet_id %>
+          </td>
+          <td>
+            <%= reservation.date %>
+          </td>
+          <td>
+            <%= reservation.email %>
+          </td>
+          <td>
+            <%= reservation.created_at %>
+          </td>
+          <td>
+            <%= reservation.updated_at %>
+          </td>
+      </thead>
+    </table>
+  </div>
+  <% end %>
+
+</html>

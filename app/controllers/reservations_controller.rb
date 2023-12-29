@@ -19,7 +19,6 @@ class ReservationsController < ApplicationController
             flash[:error] = 'DBエラーです'
             redirect_to new_movie_schedule_reservation_path(params[:reservation][:movie_id], reservation_params[:schedule_id]), params: reservation_params
         end
-
     end
 
     def new
