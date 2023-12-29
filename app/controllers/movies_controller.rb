@@ -31,7 +31,7 @@ class MoviesController < ApplicationController
       redirect_to movie_path(params[:movie_id]), alert: '日付を選択してください'
       return
     end
-    @sheets = Sheet.all
+    @sheets = Sheet.left_outer_joins(:reservations).select('sheets.*, reservations.id AS reservation_id')
     @sheets_group = @sheets.group_by { |sheet| sheet[:row] }
   end
 

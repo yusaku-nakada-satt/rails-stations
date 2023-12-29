@@ -25,8 +25,12 @@
       <% @sheets_group.each do |row, sheets| %>
         <tr>
           <% sheets.each do |sheet| %>
-            <td>
-              <%= link_to "#{sheet.row}-#{sheet.column}", new_movie_schedule_reservation_path(movie_id: params[:movie_id], schedule_id: params[:schedule_id], date: params[:date], sheet_id: sheet.id) %>
+          <td class="<%= 'reservation' if sheet.reservation_id.nil? %>">
+              <div class="<%= 'reservation' if sheet.reservation_id.nil? %>">
+              <% if sheet.reservation_id.nil? %>
+                <%= link_to "#{sheet.row}-#{sheet.column}", new_movie_schedule_reservation_path(movie_id: params[:movie_id], schedule_id: params[:schedule_id], date: params[:date], sheet_id: sheet.id) %>
+                <% end %>
+              </div>
             </td>
           <% end %>
         </tr>
