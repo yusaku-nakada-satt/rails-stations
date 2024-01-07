@@ -1,93 +1,91 @@
 <!DOCTYPE html>
 <html>
-<div class="top">
-  <h1>Schedules</h1>
-</div>
-<div class="movie">
-	<div class="actions">
-		<table>
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>映画タイトル</th>
-					<th>公開年</th>
-					<th>上映中か</th>
-					<th>概要</th>
-					<th>画像URL</th>
-					<th>作成日時</th>
-					<th>更新日時</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<%= link_to @movie.id, movie_path(@movie) %>
-					</td>
-					<td>
-						<%= @movie.name %>
-					</td>
-					<td>
-						<%= @movie.year %>
-					</td>
-					<td>
-						<%= @movie.description %>
-					</td>
-					<td>
-						<%= image_tag @movie.image_url %>
-					</td>
-					<td>
-						<% if @movie.is_showing==true %>
-							上映中
-							<% else %>
-								上映予定
-								<% end %>
-					</td>
-					<td>
-						<%= @movie.created_at %>
-					</td>
-					<td>
-						<%= @movie.updated_at %>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-</div>
-<% @schedules.each do |schedules| %>
-  <div class="actions">
-    <table>
-      <thead>
-				<tr>
-					<th>ID</th>
-					<th>映画名</th>
-					<th>開始時間</th>
-					<th>終了時間</th>
-					<th>作成日時</th>
-					<th>更新日時</th>
-				</tr>
-			</thead>
-      <thead>
-        <tr>
-          <td>
-            <%= schedules.id %>
-          </td>
-          <td>
-            <%= schedules.start_time %>
-          </td>
-          <td>
-            <%= schedules.end_time %>
-          </td>
-          <td>
-            <%= schedules.created_at %>
-          </td>
-          <td>
-            <%= schedules.updated_at %>
-          </td>
-        </tr>
-      </thead>
-    </table>
+  <div class="top">
+    <h1>Schedules</h1>
   </div>
+  <div class="movie">
+    <div class="actions">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>映画タイトル</th>
+            <th>公開年</th>
+            <th>上映中か</th>
+            <th>概要</th>
+            <th>画像URL</th>
+            <th>作成日時</th>
+            <th>更新日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to @movie.id, movie_path(@movie) %>
+            </td>
+            <td>
+              <%= @movie.name %>
+            </td>
+            <td>
+              <%= @movie.year %>
+            </td>
+            <td>
+              <%= @movie.description %>
+            </td>
+            <td>
+              <%= image_tag @movie.image_url %>
+            </td>
+            <td>
+              <% if @movie.is_showing==true %>
+                上映中
+              <% else %>
+                上映予定
+              <% end %>
+            </td>
+            <td>
+              <%= @movie.created_at %>
+            </td>
+            <td>
+              <%= @movie.updated_at %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% @schedules.each do |schedules| %>
+    <div class="actions">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>映画名</th>
+            <th>開始時間</th>
+            <th>終了時間</th>
+            <th>作成日時</th>
+            <th>更新日時</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+            <td>
+              <%= schedules.id %>
+            </td>
+            <td>
+              <%= schedules.start_time %>
+            </td>
+            <td>
+              <%= schedules.end_time %>
+            </td>
+            <td>
+              <%= schedules.created_at %>
+            </td>
+            <td>
+              <%= schedules.updated_at %>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
   <% end %>
-
 </html>

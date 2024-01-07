@@ -12,7 +12,7 @@ RSpec.describe Admin::MoviesController, type: :controller do
         delete :destroy, params: { id: @movie.id }, session: {}
       end.to change(Movie, :count).by(-1)
 
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:found)
     end
 
     it ':idのレコードが存在しないときRecordNotFound(400)が返る' do

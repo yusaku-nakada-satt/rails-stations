@@ -10,7 +10,7 @@ RSpec.describe Admin::MoviesController, type: :controller do
     end
 
     it '200を返すこと' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'HTMLを返すこと' do

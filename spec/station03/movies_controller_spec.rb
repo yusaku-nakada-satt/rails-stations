@@ -8,7 +8,7 @@ RSpec.describe Admin::MoviesController, type: :controller do
     end
 
     it '200を返すこと' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'HTMLを返すこと' do
@@ -29,13 +29,13 @@ RSpec.describe Admin::MoviesController, type: :controller do
 
     it '302を返すこと' do
       post :create, params: { movie: movie_attributes }, session: {}
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:found)
     end
 
     it 'エラー処理がされていて仮にRailsデフォルトのエラー画面が出ないこと' do
       # nameの一意は条件に入っているため、わざと重複させてバリデーションエラーを起こす
-      create(:movie, name: "重複する名前")
-      post :create, params: { movie: { name: "重複する名前", is_showing: true ,image_url: "https://techbowl.co.jp/_nuxt/img/test.png" } }, session: {}
+      create(:movie, name: '重複する名前')
+      post :create, params: { movie: { name: '重複する名前', is_showing: true, image_url: 'https://techbowl.co.jp/_nuxt/img/test.png' } }, session: {}
 
       expect(response.body).not_to include('<div class="source hidden" id="frame-source-0-0">') # Railsのデフォルトのエラー画面のHTML要素
     end

@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <html>
-<div class="top">
-  <h1>admin/movies</h1>
-</div>
-<div class="movie">
-  <h2>
-    <%= "#{@movie.name}・#{@movie.id}" %>
-  </h2>
-</div>
-<% @schedules.each do |schedule| %>
-  <div class="actions">
-    <table>
-      <thead>
-				<tr>
-					<th>スケジュールID</th>
-          <th>映画ID</th>
-					<th>開始時間</th>
-					<th>終了時間</th>
-					<th>作成日時</th>
-					<th>更新日時</th>
-				</tr>
-			</thead>
-      <thead>
-        <tr>
-          <td>
-            <%= link_to schedule.id, edit_admin_movie_schedule_path(schedule.movie_id, schedule.id) %>
-          </td>
-          <td>
-            <%= link_to schedule.movie_id, edit_admin_movie_path(schedule.movie_id) %>
-          </td>
-          <td>
-            <%= schedule.start_time %>
-          </td>
-          <td>
-            <%= schedule.end_time %>
-          </td>
-          <td>
-            <%= schedule.created_at %>
-          </td>
-          <td>
-            <%= schedule.updated_at %>
-          </td>
-        </tr>
-      </thead>
-    </table>
+  <div class="top">
+    <h1>admin/movies</h1>
   </div>
+  <div class="movie">
+    <h2>
+      <%= "#{@movie.name}・#{@movie.id}" %>
+    </h2>
+  </div>
+  <% @schedules.each do |schedule| %>
+    <div class="actions">
+      <table>
+        <thead>
+          <tr>
+            <th>スケジュールID</th>
+            <th>映画ID</th>
+            <th>開始時間</th>
+            <th>終了時間</th>
+            <th>作成日時</th>
+            <th>更新日時</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+            <td>
+              <%= link_to schedule.id, edit_admin_movie_schedule_path(schedule.movie_id, schedule.id) %>
+            </td>
+            <td>
+              <%= link_to schedule.movie_id, edit_admin_movie_path(schedule.movie_id) %>
+            </td>
+            <td>
+              <%= schedule.start_time %>
+            </td>
+            <td>
+              <%= schedule.end_time %>
+            </td>
+            <td>
+              <%= schedule.created_at %>
+            </td>
+            <td>
+              <%= schedule.updated_at %>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
   <% end %>
-
 </html>

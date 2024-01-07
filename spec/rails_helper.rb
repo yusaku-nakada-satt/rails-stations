@@ -3,7 +3,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -37,7 +37,7 @@ ActiveRecord::Base.logger = Logger.new('log/railway_test.log', 3, 10 * 1024 * 10
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root.join('spec/fixtures')}"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -70,14 +70,13 @@ RSpec.configure do |config|
   # When using the methods of Factory_bot in the spec test code, the class name can be omitted.
   config.include FactoryBot::Syntax::Methods
 
-
   # for N+1 test
   if Bullet.enable?
-    config.before(:each) do
+    config.before do
       Bullet.start_request
     end
 
-    config.after(:each) do
+    config.after do
       Bullet.perform_out_of_channel_notifications if Bullet.notification?
       Bullet.end_request
     end

@@ -1,103 +1,101 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>詳細案内</title>
-  <%= stylesheet_link_tag 'show' %>
-</head>
-<div class="contents">
-  <h1>映画詳細</h1>
-  <div class="sca">
-    <h2>上映スケジュール</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>上映開始時間</th>
-          <th>上映終了時間</th>
-        </tr>
-        <% @schedules.each do |schedule| %>
+  <head>
+    <title>詳細案内</title>
+    <%= stylesheet_link_tag 'show' %>
+  </head>
+  <div class="contents">
+    <h1>映画詳細</h1>
+    <div class="sca">
+      <h2>上映スケジュール</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>上映開始時間</th>
+            <th>上映終了時間</th>
+          </tr>
+          <% @schedules.each do |schedule| %>
+            <tr>
+              <td>
+                <%= schedule.start_time %>
+              </td>
+              <td>
+                <%= schedule.end_time %>
+              </td>
+            </tr>
+          <% end %>
+        </thead>
+      </table>
+    </div>
+    <div class="content">
+      <h2>映画詳細</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>映画タイトル</th>
+            <th>公開年</th>
+            <th>上映中か</th>
+            <th>概要</th>
+            <th>画像URL</th>
+            <th>作成日時</th>
+            <th>更新日時</th>
+          </tr>
+        </thead>
+        <tbody>
           <tr>
             <td>
-              <%= schedule.start_time %>
+              <%= @movie.id %>
             </td>
             <td>
-              <%= schedule.end_time %>
+              <%= @movie.name %>
             </td>
-          </tr>
-          <% end %>
-      </thead>
-    </table>
-  </div>
-  <div class="content">
-    <h2>映画詳細</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>映画タイトル</th>
-          <th>公開年</th>
-          <th>上映中か</th>
-          <th>概要</th>
-          <th>画像URL</th>
-          <th>作成日時</th>
-          <th>更新日時</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <%= @movie.id %>
-          </td>
-          <td>
-            <%= @movie.name %>
-          </td>
-          <td>
-            <%= @movie.year %>
-          </td>
-          <td>
-            <%= @movie.description %>
-          </td>
-          <td>
-            <%= image_tag @movie.image_url %>
-          </td>
-          <td>
-            <% if @movie.is_showing==true %>
-              上映中
+            <td>
+              <%= @movie.year %>
+            </td>
+            <td>
+              <%= @movie.description %>
+            </td>
+            <td>
+              <%= image_tag @movie.image_url %>
+            </td>
+            <td>
+              <% if @movie.is_showing==true %>
+                上映中
               <% else %>
                 上映予定
-                <% end %>
-          </td>
-          <td>
-            <%= @movie.created_at %>
-          </td>
-          <td>
-            <%= @movie.updated_at %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="reservation">
-    <h2>座席予約</h2>
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>">
-        <%= message %>
-      </div>
-      <% end %>
-        <%= form_with url: movie_reservation_path(@movie), method: :get do |f| %>
-          <div class="field mb-1">
-            <%= f.label :予約日付 %>
-              <%= f.select :date, @dates, {}, class: 'form-control' %>
-          </div>
-          <div class="field mb-1">
-            <%= f.label :上映スケジュール %>
-              <%= f.select :schedule_id, @schedules.map { |schedule| ["上映開始時間：#{schedule.start_time}", schedule.id] },
-                {}, class: 'form-control' %>
-          </div>
-          <div class="actions text-center">
-            <%= button_tag '座席を予約する' , class: 'btn btn-primary' %>
               <% end %>
-          </div>
-  </div>
-
-</html>
+            </td>
+            <td>
+              <%= @movie.created_at %>
+            </td>
+            <td>
+              <%= @movie.updated_at %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="reservation">
+      <h2>座席予約</h2>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
+      <%= form_with url: movie_reservation_path(@movie), method: :get do |f| %>
+        <div class="field mb-1">
+          <%= f.label :予約日付 %>
+          <%= f.select :date, @dates, {}, class: 'form-control' %>
+        </div>
+        <div class="field mb-1">
+          <%= f.label :上映スケジュール %>
+          <%= f.select :schedule_id, @schedules.map { |schedule| ["上映開始時間：#{schedule.start_time}", schedule.id] },
+                {}, class: 'form-control' %>
+        </div>
+        <div class="actions text-center">
+          <%= button_tag '座席を予約する' , class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </html>

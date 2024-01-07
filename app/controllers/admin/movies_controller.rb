@@ -10,12 +10,17 @@ module Admin
     end
 
     def new
-      if @movie = Movie.new()
-        flash[:notice] = "新規作成しました"
+      @movie = Movie.new
+      if @movie
+        flash[:notice] = '新規作成しました'
       else
         flash[:error] = 'DBエラーです'
         render :new
       end
+    end
+
+    def edit
+      @movie = Movie.find(params[:id])
     end
 
     def create
@@ -33,9 +38,6 @@ module Admin
       end
     end
 
-    def edit
-      @movie = Movie.find(params[:id])
-    end
 
     def update
       @movie = Movie.find(params[:id])
@@ -50,14 +52,13 @@ module Admin
     def destroy
       @movie = Movie.find(params[:id])
       if @movie.destroy
-        flash[:notice] = "削除しました"
+        flash[:notice] = '削除しました'
         redirect_to admin_movies_path
       else
         flash[:error] = '削除に失敗しました。'
         render :index
       end
     end
-    
 
     private
     def movie_params

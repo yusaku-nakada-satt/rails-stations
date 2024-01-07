@@ -8,7 +8,7 @@ RSpec.describe ReservationsController, type: :controller do
 
     it 'date, sheet_idのどちらかまたは両方が渡されていないとき200を返していないこと' do
       failure_request
-      expect(response).not_to have_http_status(200)
+      expect(response).not_to have_http_status(:ok)
     end
   end
 end

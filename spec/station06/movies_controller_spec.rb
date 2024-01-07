@@ -9,9 +9,9 @@ RSpec.describe MoviesController, type: :controller do
       get 'index'
     end
 
-    context "Station01の仕様" do
+    context 'Station01の仕様' do
       it '200を返すこと' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'HTMLを返すこと' do
@@ -38,7 +38,7 @@ RSpec.describe MoviesController, type: :controller do
         keyword = 'selected_movie'
         selected_movie_by_name = create(:movie, name: keyword)
         selected_movie_by_description = create(:movie, description: keyword)
-        get :index, params: { keyword: keyword }
+        get :index, params: { keyword: }
 
         expect(response.body).to include(selected_movie_by_name.name)
         expect(response.body).to include(selected_movie_by_description.name)

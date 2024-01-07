@@ -19,19 +19,15 @@
 				"irongeek.vscode-env",
 				"rogalmic.bash-debug",
 				"hediet.vscode-drawio",
-				"Pivotal.vscode-boot-dev-pack",
-				"ms-azuretools.vscode-docker",
-				"Shopify.ruby-lsp",
-				"castwide.solargraph",
 				"kaiwood.endwise",
 				"oderwat.indent-rainbow",
 				"mosapride.zenkaku",
 				"aaron-bond.better-comments",
-				"shardulm94.trailing-spaces",
-				"misogi.ruby-rubocop",
 				"TechTrain.railway-vscode",
 				"aliariff.vscode-erb-beautify",
-				"rubocop.vscode-rubocop"
+				"misogi.ruby-rubocop",
+				"castwide.solargraph",
+				"rebornix.Ruby"
 			]
 		}
 	},

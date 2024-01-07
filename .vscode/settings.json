@@ -1,10 +1,11 @@
 {
-  "ruby.rubocop.executePath": "/usr/local/bundle/bin/rubocop",
-  "files.associations": {
-    "*.html.erb": "html"
-  },
-  "[erb]": {
-    "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
-  },
-  "vscode-erb-beautify.useBundler": true
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "files.trimFinalNewlines": true, //ファイルの保存時に最終行以降の新しい行をトリミン
+  "files.insertFinalNewline": true, //ファイルの保存時に最新の行を末尾に追加
+  "files.trimTrailingWhitespace": true, //末尾の空白をトリミング
+  "ruby.rubocop.executePath": "/usr/local/bundle/bin/",
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop"
+  }
 }

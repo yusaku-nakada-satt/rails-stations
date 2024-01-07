@@ -1,41 +1,39 @@
 <!DOCTYPE html>
-
 <head>
   <title>座席一覧</title>
   <%= stylesheet_link_tag 'reservations' %>
 </head>
 <html>
-<div>
-  <% if flash.any? %>
-    <div class="error-alert">
-      <ul>
-        <% flash.each do |name, message| %>
-          <li class="error-message text-danger">
-            <%= message %>
-          </li>
+  <div>
+    <% if flash.any? %>
+      <div class="error-alert">
+        <ul>
+          <% flash.each do |name, message| %>
+            <li class="error-message text-danger">
+              <%= message %>
+            </li>
           <% end %>
-      </ul>
-    </div>
+        </ul>
+      </div>
     <% end %>
-</div>
-<div class="screen">
-  スクリーン 1
-</div>
-<div class="clients">
-  <table>
-    <% @sheets_group.each do |row, sheets| %>
-      <tr>
-        <% sheets.each do |sheet| %>
-          <td class="<%= sheet.reservation_id.nil? ? 'no-reservation' : 'has-reservation' %>">
-            <% if sheet.reservation_id.nil? %>
-              <%= link_to "#{sheet.row}-#{sheet.column}" , new_movie_schedule_reservation_path(movie_id:
+  </div>
+  <div class="screen">
+    スクリーン 1
+  </div>
+  <div class="clients">
+    <table>
+      <% @sheets_group.each do |row, sheets| %>
+        <tr>
+          <% sheets.each do |sheet| %>
+            <td class="<%= sheet.reservation_id.nil? ? 'no-reservation' : 'has-reservation' %>">
+              <% if sheet.reservation_id.nil? %>
+                <%= link_to "#{sheet.row}-#{sheet.column}" , new_movie_schedule_reservation_path(movie_id:
                 params[:movie_id], schedule_id: params[:schedule_id], date: params[:date], sheet_id: sheet.id) %>
-                <% end %>
-          </td>
+              <% end %>
+            </td>
           <% end %>
-      </tr>
+        </tr>
       <% end %>
-  </table>
-</div>
-
+    </table>
+  </div>
 </html>

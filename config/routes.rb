@@ -8,14 +8,14 @@ Rails.application.routes.draw do
 
   get 'sheets/index'
   namespace :admin do
-    resources :movies, only: [:index, :show,:new, :create, :update, :edit, :destroy] do
-      resources :schedules, only: [:new, :create, :update, :edit]
+    resources :movies, only: %i[index show new create update edit destroy] do
+      resources :schedules, only: %i[new create update edit]
     end
-    resources :schedules, only: [:index, :show, :destroy]
-    resources :reservations, only: [:index, :new, :create, :show, :update, :destroy]
+    resources :schedules, only: %i[index show destroy]
+    resources :reservations, only: %i[index new create show update destroy]
   end
 
-  resources :movies, only: [:index, :show, :reservation] do
+  resources :movies, only: %i[index show reservation] do
     get :reservation
     resources :schedules do
       resources :reservations, only: [:new]

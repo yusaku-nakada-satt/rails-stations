@@ -14,10 +14,10 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 # scss個別読み込み設定
-Rails.application.config.assets.precompile += %w(
-    style.css
-    common/*
-    partial/*
-    posts/index.css
-    posts/new.css
- )
+Rails.application.config.assets.precompile += %w[
+  style.css
+  common/*
+  partial/*
+  posts/index.css
+  posts/new.css
+]

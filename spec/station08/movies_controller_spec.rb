@@ -4,7 +4,8 @@ RSpec.describe MoviesController, type: :controller do
   render_views
   describe 'Station6 GET /movies/:id' do
     let!(:movie) { create(:movie) }
-    let!(:schedules) { create_list(:schedule, 5, movie: movie) }
+    let!(:schedules) { create_list(:schedule, 5, movie:) }
+
     before do
       get :show, params: { id: movie.id }, session: {}
     end

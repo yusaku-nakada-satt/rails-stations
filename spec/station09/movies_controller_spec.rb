@@ -6,6 +6,7 @@ RSpec.describe Admin::MoviesController, type: :controller do
   describe 'Station9 GET /admin/movies' do
     let!(:movies) { create_list(:movie, 3) }
     let!(:schedules) { create_list(:schedule, 3, movie_id: movies.first.id) }
+
     before do
       get :index
     end
@@ -15,9 +16,9 @@ RSpec.describe Admin::MoviesController, type: :controller do
       expect(response.body).to include(schedules.first.start_time.year.to_s)
     end
 
-    context "Station02の仕様" do
+    context 'Station02の仕様' do
       it '200を返すこと' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'HTMLを返すこと' do

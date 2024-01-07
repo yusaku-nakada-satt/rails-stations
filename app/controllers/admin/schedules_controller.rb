@@ -1,6 +1,5 @@
 module Admin
   class SchedulesController < ApplicationController
-
     def index
       @schedules = Schedule.joins(:movie).select('schedules.*, movies.name', 'movies.image_url')
     end
@@ -12,6 +11,10 @@ module Admin
 
     def new
       @schedule = Schedule.new
+    end
+
+    def edit
+      @schedule = Schedule.find(params[:id])
     end
 
     def create
@@ -29,9 +32,6 @@ module Admin
       end
     end
 
-    def edit
-      @schedule = Schedule.find(params[:id])
-    end
 
     def update
       @schedule = Schedule.find(params[:id])
@@ -43,10 +43,10 @@ module Admin
       end
     end
 
-    def destroy 
+    def destroy
       @schedule = Schedule.find(params[:id])
       if @schedule.destroy
-        flash[:notice] = "削除しました"
+        flash[:notice] = '削除しました'
         redirect_to admin_schedules_path
       else
         flash[:error] = '削除に失敗しました。'
@@ -55,6 +55,7 @@ module Admin
     end
 
     private
+
     def schedule_params
       params.require(:schedule).permit(:movie_id, :start_time, :end_time)
     end
