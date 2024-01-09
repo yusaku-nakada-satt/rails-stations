@@ -17,16 +17,16 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @schedules = @movie.schedules
-    @dates = (Date.today..Date.today + 6).to_a
+    @dates = (Time.zone.today..Time.zone.today + 6).to_a
   end
 
   def reservation
     unless params[:schedule_id]
-      redirect_to movie_path(params[:movie_id]), alert: 'スケジュールを選択してください'
+      redirect_to movie_path(params[:movie_id]), alert: I18n.t('schedules.select_date')
       return
     end
     unless params[:date]
-      redirect_to movie_path(params[:movie_id]), alert: '日付を選択してください'
+      redirect_to movie_path(params[:movie_id]), alert: I18n.t('schedules.select_schedule')
       return
     end
     @sheets = Sheet.left_outer_joins(:reservations).select('sheets.*, reservations.id AS reservation_id')

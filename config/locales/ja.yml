@@ -1,0 +1,16 @@
+ja:
+  db:
+    db_error: 'DBエラーです'
+    delete_error: '削除に失敗しました'
+    delete_success: '削除しました'
+  reservations:
+    create_success: '新規作成しました'
+    already_reserved: 'その席はすでに予約されています'
+    reservation_completed: '予約が完了しました'
+  movies:
+    create_success: '新規作成しました'
+    update_success: '更新しました'
+    delete_success: '削除しました'
+  schedules:
+    select_date: '日付を選択してください'
+    select_schedule: 'スケジュールを選択してください'

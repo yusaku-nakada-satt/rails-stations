@@ -28,6 +28,9 @@
       <%= f.submit '検索' %>
     <% end %>
   </div>
+  <div>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  </div>
   <% @movies.each do |movie| %>
     <div class="actions">
       <table>

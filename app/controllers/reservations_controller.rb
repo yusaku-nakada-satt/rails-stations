@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
                                              schedule_id: reservation_params[:schedule_id])
 
     if @reservation_sheet
-      flash[:error] = 'その席はすでに予約されています'
+      flash[:error] = I18n.t('reservations.already_reserved')
       redirect_to movie_reservation_path(params[:reservation][:movie_id],
                                          date: reservation_params[:date],
                                          schedule_id: reservation_params[:schedule_id])
@@ -22,9 +22,9 @@ class ReservationsController < ApplicationController
 
     if @reservation.valid?
       @reservation.save!
-      redirect_to movies_path, notice: '予約が完了しました'
+      redirect_to movies_path, notice: I18n.t('reservations.reservation_completed')
     else
-      flash[:error] = 'DBエラーです'
+      flash[:error] = I18n.t('db.db_error')
       redirect_to new_movie_schedule_reservation_path(params[:reservation][:movie_id], reservation_params[:schedule_id]),
                   params: reservation_params
     end

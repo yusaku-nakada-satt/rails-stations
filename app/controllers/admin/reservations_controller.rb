@@ -13,9 +13,9 @@ module Admin
     def new
       @reservation = Reservation.new
       if @reservation
-        flash[:notice] = '新規作成しました'
+        flash[:notice] = I18n.t('reservations.create_success')
       else
-        flash[:error] = 'DBエラーです'
+        flash[:error] = I18n.t('db.db_error')
         render :new
       end
     end
@@ -28,21 +28,21 @@ module Admin
                                                schedule_id: reservation_params[:schedule_id])
 
       if @reservation_sheet
-        flash[:error] = 'その席はすでに予約されています'
+        flash.now[:error] = I18n.t('reservations.already_reserved')
         render :new, status: :bad_request
         return
       end
 
       if @reservation.valid?
         if @reservation.save
-          redirect_to admin_reservations_pathｓｓ
+          redirect_to admin_reservations_path
         else
-          flash[:error] = 'DBエラーです'
+          flash.now[:error] = I18n.t('bd.db_error')
           render :new, status: :bad_request
           nil
         end
       else
-        flash[:error] = 'DBエラーです'
+        flash[:error] = I18n.t('bd.db_error')
         render :new, status: :bad_request
         nil
       end
@@ -54,7 +54,7 @@ module Admin
       if @reservation.update(reservation_params)
         redirect_to admin_reservations_path
       else
-        flash[:error] = 'DBエラーです'
+        flash[:error] = I18n.t('bd.db_error')
         render :edit, status: :bad_request
       end
     end
@@ -62,10 +62,10 @@ module Admin
     def destroy
       @reservation = Reservation.find(params[:id])
       if @reservation.destroy
-        flash[:notice] = '削除しました'
+        flash[:notice] = I18n.t('bd.delete_success')
         redirect_to admin_reservations_path
       else
-        flash[:error] = '削除に失敗しました。'
+        flash[:error] = I18n.t('bd.delete_error')
         render :index
       end
     end

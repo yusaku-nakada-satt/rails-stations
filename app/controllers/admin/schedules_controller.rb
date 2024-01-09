@@ -20,14 +20,12 @@ module Admin
     def create
       @schedule = Schedule.new(schedule_params)
       if @schedule.valid?
-        begin
-          @schedule.save!
+        @schedule.save!
           redirect_to admin_schedules_path
-        rescue ActiveRecord::StatementInvalid => e
-          flash[:error] = 'DBエラーです'
           render :new
-        end
+          return
       else
+        flash[:error] = I18n.t('bd.db_error')
         render :new
       end
     end
@@ -38,7 +36,7 @@ module Admin
       if @schedule.update(schedule_params)
         redirect_to admin_schedules_path
       else
-        flash[:error] = 'DBエラーです'
+        flash[:error] = I18n.t('bd.db_error')
         render :edit
       end
     end
@@ -46,10 +44,10 @@ module Admin
     def destroy
       @schedule = Schedule.find(params[:id])
       if @schedule.destroy
-        flash[:notice] = '削除しました'
+        flash[:notice] = I18n.t('bd.delete_success')
         redirect_to admin_schedules_path
       else
-        flash[:error] = '削除に失敗しました。'
+        flash[:error] = I18n.t('bd.delete_error')
         render :index
       end
     end

@@ -12,9 +12,9 @@ module Admin
     def new
       @movie = Movie.new
       if @movie
-        flash[:notice] = '新規作成しました'
+        flash[:notice] = I18n.t('movies.create_success')
       else
-        flash[:error] = 'DBエラーです'
+        flash[:error] = I18n.t('bd.db_error')
         render :new
       end
     end
@@ -26,14 +26,12 @@ module Admin
     def create
       @movie = Movie.new(movie_params)
       if @movie.valid?
-        begin
-          @movie.save!
+        @movie.save!
           redirect_to admin_movies_path
-        rescue ActiveRecord::StatementInvalid => e
-          flash[:error] = 'DBエラーです'
           render :new
-        end
+          return
       else
+        flash[:error] = I18n.t('bd.db_error')
         render :new
       end
     end
@@ -44,7 +42,7 @@ module Admin
       if @movie.update(movie_params)
         redirect_to admin_movies_path
       else
-        flash[:error] = 'DBエラーです'
+        flash[:error] = I18n.t('db.db_error')
         render :edit
       end
     end
@@ -52,10 +50,10 @@ module Admin
     def destroy
       @movie = Movie.find(params[:id])
       if @movie.destroy
-        flash[:notice] = '削除しました'
+        flash[:notice] = I18n.t('db.delete_success')
         redirect_to admin_movies_path
       else
-        flash[:error] = '削除に失敗しました。'
+        flash[:error] = I18n.t('db.delete_error')
         render :index
       end
     end

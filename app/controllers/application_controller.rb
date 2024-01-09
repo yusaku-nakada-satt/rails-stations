@@ -6,8 +6,17 @@ class ApplicationController < ActionController::Base
     movies_path
   end
 
+  def after_sign_out_path_for(_resource)
+    new_user_registration_path
+  end
+
   def respond_with(resource, _opts = {})
-    redirect_to after_sign_up_path_for(resource), status: 302
+    # DBに保存された場合はリダイレクト
+    if resource.persisted?
+      redirect_to after_sign_up_path_for(resource), status: 302
+    else
+      super
+    end
   end
 
   private
