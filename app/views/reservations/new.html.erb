@@ -24,6 +24,11 @@
           <%= f.hidden_field :movie_id, value: @movie.id %>
         <% end %>
       </div>
+      <div>
+        <%= f.label :劇場 %><span class="badge badge-danger ml-1"></span>
+        <%= f.text_field :theater_id, value: @theater.name, class:"form-control", readonly: true %>
+        <%= f.hidden_field :theater_id, value: @theater.id %>
+      </div>
       <div class="field mb-1">
         <%= f.label :選択中の日時 %><span class="badge badge-danger ml-1"></span>
         <%= f.text_field :date, value: params[:date], class:"form-control", readonly: true %>

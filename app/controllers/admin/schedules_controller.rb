@@ -55,7 +55,7 @@ module Admin
     private
 
     def schedule_params
-      params.require(:schedule).permit(:movie_id, :start_time, :end_time)
+      params.require(:schedule).permit(:movie_id, :start_time, :end_time, :theater_id)
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_06_001826) do
+ActiveRecord::Schema.define(version: 2024_01_11_052722) do
 
   create_table "movies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 160, null: false, comment: "映画のタイトル。邦題・洋題は一旦考えなくてOK"
@@ -31,9 +31,13 @@ ActiveRecord::Schema.define(version: 2024_01_06_001826) do
     t.string "name", null: false, comment: "予約者名"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "screen_id"
+    t.bigint "theater_id"
     t.index ["date", "schedule_id", "sheet_id"], name: "index_reservations_on_date_and_ids", unique: true
     t.index ["schedule_id"], name: "index_reservations_on_schedule_id"
+    t.index ["screen_id"], name: "index_reservations_on_screen_id"
     t.index ["sheet_id"], name: "index_reservations_on_sheet_id"
+    t.index ["theater_id"], name: "index_reservations_on_theater_id"
   end
 
   create_table "schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -42,7 +46,11 @@ ActiveRecord::Schema.define(version: 2024_01_06_001826) do
     t.time "end_time", null: false, comment: "上映終了時刻"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "theater_id"
+    t.bigint "screen_id"
     t.index ["movie_id"], name: "index_schedules_on_movie_id"
+    t.index ["screen_id"], name: "index_schedules_on_screen_id"
+    t.index ["theater_id"], name: "index_schedules_on_theater_id"
   end
 
   create_table "screens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -54,6 +62,12 @@ ActiveRecord::Schema.define(version: 2024_01_06_001826) do
   create_table "sheets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "column", null: false, comment: "座席の列番号"
     t.string "row", limit: 1, null: false, comment: "座席の行番号"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "theaters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -72,6 +86,10 @@ ActiveRecord::Schema.define(version: 2024_01_06_001826) do
   end
 
   add_foreign_key "reservations", "schedules"
+  add_foreign_key "reservations", "screens"
   add_foreign_key "reservations", "sheets"
+  add_foreign_key "reservations", "theaters"
   add_foreign_key "schedules", "movies"
+  add_foreign_key "schedules", "screens"
+  add_foreign_key "schedules", "theaters"
 end

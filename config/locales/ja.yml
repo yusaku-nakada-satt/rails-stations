@@ -14,3 +14,4 @@ ja:
   schedules:
     select_date: '日付を選択してください'
     select_schedule: 'スケジュールを選択してください'
+    select_theater: '劇場を選択してください'
