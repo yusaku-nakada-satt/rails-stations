@@ -10,6 +10,7 @@ module Admin
     end
 
     def new
+      @movie = Movie.find_by(params[:movie_id])
       @schedule = Schedule.new
     end
 
@@ -22,7 +23,6 @@ module Admin
       if @schedule.valid?
         @schedule.save!
           redirect_to admin_schedules_path
-          render :new
           return
       else
         flash[:error] = I18n.t('bd.db_error')
@@ -55,7 +55,7 @@ module Admin
     private
 
     def schedule_params
-      params.require(:schedule).permit(:movie_id, :start_time, :end_time, :theater_id)
+      params.require(:schedule).permit(:movie_id, :start_time, :end_time, :theater_id, :screen_id)
     end
   end
 end

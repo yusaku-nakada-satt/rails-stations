@@ -93,11 +93,7 @@
           </div>
           <div class="field mb-1">
             <%= f.label :上映スケジュール %>
-            <% @schedules.each do |schedule| %>
-              <%= f.hidden_field :theater_id, value: schedule.theater_id %>
-              <%= f.select :schedule_id, [["上映開始時間：#{schedule.start_time}", schedule.id]],
-            {}, class: 'form-control' %>
-            <% end %>
+            <%= f.select :schedule_id, @schedules.map { |schedule| ["上映開始時間：#{schedule.start_time}", schedule.id] }, {}, class: 'form-control' %>
           </div>
           <div class="actions text-center">
             <%= button_tag '座席を予約する' , class: 'btn btn-primary' %>

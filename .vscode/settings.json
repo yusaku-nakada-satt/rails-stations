@@ -7,5 +7,7 @@
   "ruby.rubocop.executePath": "/usr/local/bundle/bin/",
   "[ruby]": {
     "editor.defaultFormatter": "misogi.ruby-rubocop"
-  }
+  },
+  "indentRainbow.indicatorStyle": "light",
+  "indentRainbow.colorOnWhiteSpaceOnly": false,
 }
