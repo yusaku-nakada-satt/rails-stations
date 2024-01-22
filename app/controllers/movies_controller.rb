@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @schedules = @movie.schedules
+    @schedules = @movie.schedules.includes(:theater)
     @dates = (Time.zone.today..Time.zone.today + 6).to_a
   end
 
@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
       redirect_to movie_path(params[:movie_id]), alert: I18n.t('schedules.select_schedule')
       return
     end
-    @sheets = Sheet.left_outer_joins(:reservations).select('sheets.*, reservations.id AS reservation_id')
+    @sheets = Sheet.joins("LEFT OUTER JOIN `reservations` ON `sheets`.`id` = `reservations`.`sheet_id` AND `reservations`.`schedule_id` = #{params[:schedule_id]}").select('sheets.*, reservations.id AS reservation_id')
     @sheets_group = @sheets.group_by { |sheet| sheet[:row] }
   end
 

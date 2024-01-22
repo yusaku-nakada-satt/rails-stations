@@ -7,6 +7,9 @@
     <h2>
       <%= "#{@movie.name}・#{@movie.id}" %>
     </h2>
+    <div class="actions">
+      <%= link_to 'スケジュール新規登録', new_admin_movie_schedule_path(@movie.id) %>
+    </div>
   </div>
   <% @schedules.each do |schedule| %>
     <div class="actions">
@@ -14,6 +17,8 @@
         <thead>
           <tr>
             <th>スケジュールID</th>
+            <th>シアターID</th>
+            <th>スクリーンID</th>
             <th>映画ID</th>
             <th>開始時間</th>
             <th>終了時間</th>
@@ -25,6 +30,12 @@
           <tr>
             <td>
               <%= link_to schedule.id, edit_admin_movie_schedule_path(schedule.movie_id, schedule.id) %>
+            </td>
+            <td>
+              <%= schedule.theater_id %>
+            </td>
+            <td>
+              <%= schedule.screen_id %>
             </td>
             <td>
               <%= link_to schedule.movie_id, edit_admin_movie_path(schedule.movie_id) %>

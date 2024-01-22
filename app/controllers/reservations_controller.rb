@@ -4,13 +4,19 @@ class ReservationsController < ApplicationController
 
     @reservation = Reservation.new
     @movie = Movie.find_by(params[:movie_id])
+    @theater = Theater.find_by(params[:theater_id])
   end
+
   def create
+    @screen_id = Schedule.find(reservation_params[:schedule_id]).screen_id
     @reservation = Reservation.new(reservation_params)
+    @reservation.screen_id = @screen_id
     @movie = Movie.find_by(params[:reservation][:movie_id])
     @reservation_sheet = Reservation.find_by(date: reservation_params[:date],
                                              sheet_id: reservation_params[:sheet_id],
-                                             schedule_id: reservation_params[:schedule_id])
+                                             schedule_id: reservation_params[:schedule_id],
+                                             theater_id: reservation_params[:theater_id],
+                                             screen_id: reservation_params[:screen_id])
 
     if @reservation_sheet
       flash[:error] = I18n.t('reservations.already_reserved')
@@ -34,6 +40,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name)
+    params.require(:reservation).permit(:date, :sheet_id, :schedule_id, :email, :name, :theater_id)
   end
 end

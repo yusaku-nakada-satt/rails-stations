@@ -59,7 +59,7 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>映画名</th>
+            <th>劇場ID</th>
             <th>開始時間</th>
             <th>終了時間</th>
             <th>作成日時</th>
@@ -69,8 +69,10 @@
         <thead>
           <tr>
             <td>
-              <%= schedules.id %>
+              <%= link_to schedules.id, edit_admin_movie_schedule_path(@movie, schedules) %>
             </td>
+            <td>
+              <%= schedules.theater_id %>
             <td>
               <%= schedules.start_time %>
             </td>

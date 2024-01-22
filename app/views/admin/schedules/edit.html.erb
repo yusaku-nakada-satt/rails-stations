@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+  <div class="top">
+    <h1>admin/schedules/edit</h1>
+  </div>
   <div>
     <% if @schedule.errors.any? %>
       <div class="error-alert">
@@ -17,6 +20,14 @@
     <div class="field mb-1">
       <%= f.label :映画ID %><span class="badge badge-danger ml-1"></span>
       <%= f.text_field :movie_id, class:"form-control",placeholder:"映画ID", disabled: true%>
+    </div>
+    <div class="field mb-1">
+      <%= f.label :劇場ID %><span class="badge badge-danger ml-1"></span>
+      <%= f.text_field :theater_id, class:"form-control",placeholder:"劇場" %>
+    </div>
+    <div class="field mb-1">
+      <%= f.label :スクリーンID %><span class="badge badge-danger ml-1"></span>
+      <%= f.text_field :screen_id, class:"form-control",placeholder:"スクリーン" %>
     </div>
     <div class="field mb-1">
       <%= f.label :開始時間 %><span class="badge badge-danger ml-1"></span>
