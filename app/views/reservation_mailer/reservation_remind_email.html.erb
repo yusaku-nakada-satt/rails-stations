@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @reservation.name %>様　予約前日となりました。</h1>
+    <p>
+      映画名：<%= @movie_name.name %><br>
+      上映会場：<%= @theater_name.name %><br>
+      上映時間：<%= @schedule.start_time.strftime("%H:%M") %>上映開始<br>
+      座席：<%= @reservation.sheet_id %><br>
+    </p>
+  </body>
+</html>
