@@ -7,7 +7,7 @@ class ReservationMailer < ApplicationMailer
 
     raise '予約情報の取得に失敗しました' unless @reservation && @schedule && @theater_name && @movie_name
 
-    mail(to: @reservation.email, subject: '予約完了のお知らせ')
+    mail(to: @reservation.email, subject: I18n.t('mailers.reservation.success'))
   end
 
   def reservation_remind_email
@@ -18,6 +18,6 @@ class ReservationMailer < ApplicationMailer
 
     raise '予約情報の取得に失敗しました' unless @reservation && @schedule && @theater_name && @movie_name
 
-    mail(to: @reservation.email, subject: '予約前日のお知らせ')
+    mail(to: @reservation.email, subject: I18n.t('mailers.reservation.remind'))
   end
 end
