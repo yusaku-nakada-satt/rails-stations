@@ -26,5 +26,8 @@ module App
     # デフォルトの言語を日本語に設定
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
+
+    # productionの環境日付でないのでlogに日付出力
+    config.log_formatter = Logger::Formatter.new
   end
 end

@@ -41,3 +41,6 @@ yarn-debug.log*
 
 # devcontainer
 .devcontainer/.env
+
+# 秘密情報ファイル
+.env

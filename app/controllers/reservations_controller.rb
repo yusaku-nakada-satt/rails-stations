@@ -8,7 +8,6 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @screen_id = Schedule.find(reservation_params[:schedule_id]).screen_id
     @reservation = Reservation.new(reservation_params)
     @reservation.screen_id = @screen_id
     @movie = Movie.find_by(params[:reservation][:movie_id])
@@ -28,6 +27,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.valid?
       @reservation.save!
+      ReservationMailer.with(reservation: @reservation).reservation_email.deliver_later
       redirect_to movies_path, notice: I18n.t('reservations.reservation_completed')
     else
       flash[:error] = I18n.t('db.db_error')
