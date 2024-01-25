@@ -35,7 +35,8 @@ class MoviesController < ApplicationController
 
   def home
     @movies = Movie.joins(:ranking)
-      .where('rankings.updated_at = (SELECT MAX(updated_at) FROM rankings)')
+      .where('DATE(rankings.updated_at) = (SELECT DATE(MAX(updated_at)) FROM rankings)')
+      .group('movies.id', 'rankings.reserved_count')
       .order('rankings.reserved_count DESC')
   end
 
