@@ -5,7 +5,7 @@ class ReservationMailer < ApplicationMailer
     @theater_name = Theater.select(:name).where(id: @schedule.theater_id).first
     @movie_name = Movie.select(:name).where(id: @schedule.movie_id).first
 
-    raise '予約情報の取得に失敗しました' if @reservation.nil? && @schedule.nil? && @theater_name.nil? && @movie_name.nil?
+    raise '予約情報の取得に失敗しました' unless @reservation && @schedule && @theater_name && @movie_name
 
     mail(to: @reservation.email, subject: '予約完了のお知らせ')
   end
@@ -16,7 +16,7 @@ class ReservationMailer < ApplicationMailer
     @theater_name = Theater.select(:name).where(id: @schedule.theater_id).first
     @movie_name = Movie.select(:name).where(id: @schedule.movie_id).first
 
-    raise '予約情報の取得に失敗しました' if @reservation.nil? || @schedule.nil? || @theater_name.nil? || @movie_name.nil?
+    raise '予約情報の取得に失敗しました' unless @reservation && @schedule && @theater_name && @movie_name
 
     mail(to: @reservation.email, subject: '予約前日のお知らせ')
   end
