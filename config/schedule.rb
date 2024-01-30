@@ -28,7 +28,7 @@ rails_env = ENV['RAILS_ENV'] || :development
 # cronを実行する環境変数をセット
 set :environment, rails_env
 
-# レビュー用に5分ごとの実行を設定
+# レビュー用に10分ごとの実行を設定
 # every 10.minutes do
 #   rake 'movie_ranking:update_ranking'
 # rescue StandardError => e
