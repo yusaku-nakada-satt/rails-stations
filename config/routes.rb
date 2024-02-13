@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  root to: 'movies#home'
   devise_for :users, skip: [:registrations]
 
   as :user do

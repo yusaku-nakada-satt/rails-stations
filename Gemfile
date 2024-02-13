@@ -38,15 +38,18 @@ gem 'rails-i18n'
 # rake task
 gem 'whenever', require: false
 
+# sessionをredisに保存
+gem 'redis-actionpack'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'dotenv-rails'
 end
 
 group :development do

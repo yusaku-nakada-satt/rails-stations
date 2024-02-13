@@ -1,5 +1,6 @@
 class Theater < ApplicationRecord
-  validates :name, presence: true
-  has_many :screens
+  has_many :screens, dependent: :destroy
   belongs_to :reservation
+
+  validates :name, presence: true
 end

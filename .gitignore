@@ -38,6 +38,8 @@ yarn-debug.log*
 # For techtrain clie
 .techtrain/config.toml
 
+# redis
+data/redis
 
 # devcontainer
 .devcontainer/.env

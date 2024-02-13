@@ -28,7 +28,6 @@ module Admin
       if @movie.valid?
         @movie.save!
           redirect_to admin_movies_path
-          render :new
           return
       else
         flash[:error] = I18n.t('bd.db_error')

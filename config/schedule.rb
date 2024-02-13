@@ -28,13 +28,22 @@ rails_env = ENV['RAILS_ENV'] || :development
 # cronを実行する環境変数をセット
 set :environment, rails_env
 
-# レビュー用に5分ごとの実行を設定
-every 5.minutes do
-  rake 'reservation_remind:email_remind'
+# レビュー用に10分ごとの実行を設定
+# every 10.minutes do
+#   rake 'movie_ranking:update_ranking'
+# rescue StandardError => e
+#   Rails.logger.error "Error: #{e.message}"
+# end
+
+# トップページのランキング更新バッチ
+# 要件に合わせてJST 0時に実行するように設定
+every 1.day, at: '0:00' do
+  rake 'movie_ranking:update_ranking'
 rescue StandardError => e
   Rails.logger.error "Error: #{e.message}"
 end
 
+# リマインドメール送信バッチ
 # 要件に合わせてJST 19時に実行するように設定
 every 1.day, at: '19:00' do
   rake 'reservation_remind:email_remind'

@@ -7,7 +7,7 @@ rm -f /app/tmp/pids/server.pid
 ruby -v
 
 # whenever setup
-bundle exec whenever --update-crontab
+# bundle exec whenever --update-crontab
 
 # Then exec the container's main process (what's set as CMD in the Dockerfile).
 exec "$@"

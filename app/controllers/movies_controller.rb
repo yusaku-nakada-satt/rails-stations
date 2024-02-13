@@ -33,6 +33,13 @@ class MoviesController < ApplicationController
     @sheets_group = @sheets.group_by { |sheet| sheet[:row] }
   end
 
+  def home
+    @movies = Movie.joins(:ranking)
+      .where('DATE(rankings.updated_at) = (SELECT DATE(MAX(updated_at)) FROM rankings)')
+      .group('movies.id', 'rankings.reserved_count')
+      .order('rankings.reserved_count DESC')
+  end
+
   private
 
   def movie_search_params

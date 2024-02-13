@@ -39,12 +39,12 @@ Rails.application.configure do
   # Set action mailer setting
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => ENV['USER_NAME'],
-    :password => ENV['PASSWORD'],
-    :address => 'sandbox.smtp.mailtrap.io',
-    :host => 'sandbox.smtp.mailtrap.io',
-    :port => '2525',
-    :authentication => :login
+    user_name: ENV.fetch('USER_NAME', nil),
+    password: ENV.fetch('PASSWORD', nil),
+    address: 'sandbox.smtp.mailtrap.io',
+    host: 'sandbox.smtp.mailtrap.io',
+    port: '2525',
+    authentication: :login
   }
 
   config.action_mailer.perform_caching = false

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ランキング</title>
+  </head>
+  <body>
+    <h1>ランキング</h1>
+    <table>
+      <tr>
+        <th>順位</th>
+        <th>タイトル</th>
+      </tr>
+      <% @movies.each.with_index(1) do |movie, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= link_to movie.name, movie_path(movie) %> </td>
+        </tr>
+      <% end %>
+    </table>
+  </html>
